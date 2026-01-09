@@ -129,20 +129,21 @@ class HasOne extends RelationAbstract implements \ArrayAccess
 
     // SPL - ArrayAccess functions
     // ----------------------------------------------
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         $entity = $this->execute();
 
         return isset($entity->$key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         $entity = $this->execute();
 
         return $entity->$key;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
     {
         $entity = $this->execute();
@@ -154,7 +155,7 @@ class HasOne extends RelationAbstract implements \ArrayAccess
         }
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         $entity = $this->execute();
         unset($entity->$key);
