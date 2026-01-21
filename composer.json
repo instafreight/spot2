@@ -1,5 +1,5 @@
 {
-    "name": "vlucas/spot2",
+    "name": "instafreight/spot2",
     "type": "library",
     "description": "Simple DataMapper built on top of Doctrine DBAL",
     "keywords": ["orm", "datamapper", "dbal", "doctrine", "database", "model", "mapper", "entity"],
@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=8.1",
         "vlucas/valitron": "~1.1",
         "doctrine/dbal": "^2.5.4",
         "sabre/event": "~2.0"

@@ -14,6 +14,7 @@ use Spot\Entity\Collection;
 class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAggregate, \ArrayAccess
 {
     protected $throughCollection;
+    private mixed $throughEntityName;
 
     /**
      * Constructor function
@@ -24,7 +25,7 @@ class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAg
 
         $this->entityName = $entityName;
         $this->throughEntityName = $throughEntityName;
-        $this->foreignKey = $foreignKey; // selecht
+        $this->foreignKey = $foreignKey; // select
         $this->localKey = $localKey; // where
 
         $this->identityValue = $identityValue;
@@ -178,7 +179,7 @@ class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAg
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         if ($this->result === null) {
             $count = $this->query()->count();
@@ -194,7 +195,7 @@ class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAg
      *
      * @return \Spot\Entity\Collection
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         // Load related records for current row
         $data = $this->execute();
@@ -204,20 +205,21 @@ class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAg
 
     // SPL - ArrayAccess functions
     // ----------------------------------------------
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         $this->execute();
 
         return isset($this->result[$key]);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         $this->execute();
 
         return $this->result[$key];
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
     {
         $this->execute();
@@ -229,7 +231,7 @@ class HasManyThrough extends RelationAbstract implements \Countable, \IteratorAg
         }
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         $this->execute();
         unset($this->result[$key]);
