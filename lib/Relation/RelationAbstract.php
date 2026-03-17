@@ -12,6 +12,7 @@ use Spot\Query;
  *
  * @package Spot
  */
+#[\AllowDynamicProperties]
 abstract class RelationAbstract
 {
     protected $mapper;

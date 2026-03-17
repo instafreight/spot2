@@ -11,7 +11,7 @@ use Spot\Entity\Collection;
  *
  * @package Spot
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class HasMany extends RelationAbstract implements \Countable, \IteratorAggregate, \ArrayAccess
 {
     /**

@@ -12,7 +12,7 @@ use Spot\Entity\Collection;
  *
  * @package Spot
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class HasOne extends RelationAbstract implements \ArrayAccess
 {
     /**
